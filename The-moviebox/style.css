@@ -7,25 +7,29 @@
 }
 
 body {
-  background-color: #0d0d0d;
+  background-color: #300000;
   color: #fff;
   line-height: 1.6;
 }
 
-/* Container centralizado */
+/* Container genérico */
 .conteiner {
   width: 90%;
   max-width: 1200px;
   margin: auto;
+  display: grid;
 }
 
 /* Cabeçalho */
 header {
-  background: #1a1a1a;
+  background: #000000;
   padding: 15px 0;
   border-bottom: 2px solid #da0000;
-  display: flex;
-  justify-content: space-between;
+}
+
+header .conteiner {
+  display: grid;
+  grid-template-columns: 1fr auto; /* título à esquerda, ações à direita */
   align-items: center;
 }
 
@@ -36,8 +40,13 @@ header h1 {
   letter-spacing: 2px;
 }
 
+header .actions {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 15px;
+}
+
 header .actions a {
-  margin-left: 15px;
   text-decoration: none;
   color: #fff;
   font-weight: bold;
@@ -48,31 +57,53 @@ header .actions a:hover {
   color: #e50914;
 }
 
-/* Filme em destaque */
-main section {
-  display: flex;
-  margin: 30px 0;
-  background: #1a1a1a;
+/* Seção de destaque */
+.destaque {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: center;
+
+  background: url("assets/img/imagem-fundo.jpg") no-repeat center center/cover;
   border-radius: 10px;
+  margin: 30px 0;
+  padding: 40px 20px;
+  color: #fff;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  min-height: 400px;
+  max-height: 600px;
 }
 
-main section img {
-  width: 250px;
+/* Camada escura sobre o fundo */
+.destaque::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.destaque img,
+.destaque div {
+  position: relative;
+  z-index: 2;
+}
+
+.destaque img {
+  width: 100%;
+  max-width: 300px;   /* mesmo limite das capas */
+  border-radius: 8px;
   object-fit: cover;
+  aspect-ratio: 2/3;  /* mantém proporção padrão de poster */
 }
 
-main section div {
-  padding: 20px;
-}
-
-main section h2 {
+.destaque h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-main section span {
+.destaque span {
   display: inline-block;
   background: #333;
   color: #ccc;
@@ -83,20 +114,26 @@ main section span {
   font-size: 14px;
 }
 
-main section h4 {
+.destaque h4 {
   margin-top: 15px;
   font-size: 18px;
-  color: #e50914;
+  color: #970109;
 }
 
-main section p {
+.destaque p {
   margin-top: 10px;
   color: #bbb;
 }
 
-/* Botões */
-main section button {
-  margin: 10px 10px 0 0;
+/* Botões destaque */
+.destaque .botoes {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.destaque button {
   padding: 10px 15px;
   border: none;
   border-radius: 6px;
@@ -105,30 +142,23 @@ main section button {
   transition: 0.3s;
 }
 
-main section button:nth-child(1) {
+.destaque button:nth-child(1) {
   background: #e50914;
   color: #fff;
 }
 
-main section button:nth-child(1):hover {
+.destaque button:nth-child(1):hover {
   background: #b00610;
 }
 
-main section button:nth-child(2) {
-  background: #222;
-  color: #fff;
-}
-
-main section button:nth-child(2):hover {
-  background: #444;
-}
-
-main section button:nth-child(3) {
+.destaque button:nth-child(2),
+.destaque button:nth-child(3) {
   background: #333;
   color: #fff;
 }
 
-main section button:nth-child(3):hover {
+.destaque button:nth-child(2):hover,
+.destaque button:nth-child(3):hover {
   background: #555;
 }
 
@@ -139,8 +169,10 @@ nav {
 
 nav ol {
   list-style: none;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   gap: 20px;
+  justify-content: start;
 }
 
 nav a {
@@ -152,6 +184,46 @@ nav a {
 
 nav a:hover {
   color: #e50914;
+}
+
+/* Seção de outros filmes */
+.filmes {
+  margin: 20px 0;
+}
+
+.grid-filmes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  justify-items: center;
+}
+
+.card-filme {
+  max-width: 200px;
+  width: 100%;
+  background: #661212;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.card-filme:hover {
+  transform: scale(1.05);
+}
+
+.card-filme img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+}
+
+.card-filme h3 {
+  font-size: 14px;
+  padding: 10px;
+  color: #f3f3f3;
 }
 
 /* Rodapé */
@@ -166,51 +238,4 @@ footer {
 footer p {
   color: #aaa;
   font-size: 14px;
-}
-
-/* Seção de outros filmes */
-.filmes {
-  margin: 0px 0;
-}
-
-.filmes h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color: #e50914;
-}
-
-/* Flexbox para alinhar os filmes */
-.grid-filmes {
-  display: flex;
-  flex-wrap: wrap;       /* Quebra linha se não couber */
-  gap: 10px;             /* Espaçamento entre os cards */
-  justify-content: center; /* Centraliza os filmes */
-}
-
-.card-filme {
-  flex: 1 1 160px;       /* Cresce, encolhe e tem largura mínima */
-  max-width: 200px;      /* Limita largura máxima */
-  background: #970008;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.card-filme:hover {
-  transform: scale(1.05);
-}
-
-.card-filme img {
-  width: 100%;
-  aspect-ratio: 2/3;     /* Mantém proporção de pôster */
-  object-fit: cover;
-  display: block;
-}
-
-.card-filme h3 {
-  font-size: 14px;
-  padding: 10px;
-  color: #f3f3f3;
 }
