@@ -1,0 +1,11 @@
+/* Seção de outros filmes */
+.filmes {
+  margin: 20px 0;
+}
+
+.grid-filmes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  justify-items: center;
+}

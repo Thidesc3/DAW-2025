@@ -1,0 +1,99 @@
+/* Seção de destaque */
+.destaque {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: center;
+
+  background: url("/assets/img/imagem-fundo.jpg") no-repeat center center/cover;
+  border-radius: 10px;
+  margin: 30px 0;
+  padding: 40px 20px;
+  color: #fff;
+  overflow: hidden;
+  min-height: 400px;
+  max-height: 600px;
+}
+
+/* Camada escura sobre o fundo */
+.destaque::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.destaque img,
+.destaque div {
+  position: relative;
+  z-index: 2;
+}
+
+.destaque img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 2/3;
+}
+
+.destaque h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.destaque span {
+  display: inline-block;
+  background: #333;
+  color: #ccc;
+  padding: 5px 10px;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.destaque h4 {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #970109;
+}
+
+.destaque p {
+  margin-top: 10px;
+  color: #bbb;
+}
+
+/* Botões destaque */
+.destaque button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.destaque button:nth-child(1) {
+  background: #e50914;
+  color: #fff;
+}
+
+.destaque button:nth-child(1):hover {
+  background: #b00610;
+}
+
+.destaque button:nth-child(2),
+.destaque button:nth-child(3) {
+  background: #333;
+  color: #fff;
+}
+
+.destaque button:nth-child(2):hover,
+.destaque button:nth-child(3):hover {
+  background: #555;
+}

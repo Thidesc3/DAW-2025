@@ -1,0 +1,25 @@
+/* Navegação */
+.navigation {
+  margin: 20px 0;
+}
+
+.navigation ol {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+  justify-content: start;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #ccc;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navigation a:hover {
+  color: #e50914;
+}
