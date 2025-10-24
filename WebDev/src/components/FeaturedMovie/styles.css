@@ -1,4 +1,7 @@
 /* Seção de destaque */
+
+@import "tailwindcss";
+
 .destaque {
   position: relative;
   display: grid;
